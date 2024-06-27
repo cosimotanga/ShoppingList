@@ -1,9 +1,6 @@
-//PRODUCT
-
 #ifndef PRODUCT_H
 #define PRODUCT_H
-
-#include string
+#include <string>
 
 class Product{
 
@@ -13,7 +10,8 @@ class Product{
         std::string name;
 
     public:
-        Product(const std::string& name, int quantity, bool sold = false)
+        
+        Product(const std::string& name, int quantity, bool sold = false) :
             name(name), quantity(quantity), sold(sold) {}
 
         const std::string getName() const {
@@ -31,4 +29,5 @@ class Product{
             sold = isSold;
         }
 };
+
 #endif

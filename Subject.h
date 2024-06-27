@@ -1,10 +1,10 @@
 //SUBJECT
 
 #ifndef SUBJECT_H
-#define SUBJECT_H
 
+#define SUBJECT_H
 #include "Observer.h"
-#include "Product.h"
+#include <iostream>
 
 class Subject {
     public:
@@ -13,3 +13,4 @@ class Subject {
         virtual void notify() = 0;
         virtual ~Subject() = default;
 };
+#endif

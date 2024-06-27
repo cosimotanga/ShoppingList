@@ -1,14 +1,4 @@
-//SHOPPINGLIST.cpp
-
-
 #include "ShoppingList.h"
-#include <iterator>
-#include <algorithm>
-
-void ShoppingList::addProduct(const Product& product) {
-    prodcuts.push_back(product);
-    notify();
-}
 
 void ShoppingList::removeProduct(int position) {
     if (position >= 0 && position < products.size()) {
@@ -22,9 +12,17 @@ void ShoppingList::attach(Observer* observer) {
     observers.push_back(observer);
 }
 
-void ShoppingList::detach(Observer& targetObserver) {
-    observers.erase(std::remove(observers.begin(), observers.end(), targeObserver), observers.end());
-    targetObserver.detach(this);
+void ShoppingList::detach(Observer* observer){
+    for(int i = 0; i < observers.size(); i++){
+        if(observers[i] == observer)
+            observers.erase(std::next(observers.begin(),i));
+    }
+}
+
+void ShoppingList::notify() {
+    for (auto& observer : observers) {
+        observer->update(this->getListName());
+    }
 }
 
 void ShoppingList::productPurchased(int position) {
@@ -51,11 +49,16 @@ const Product& ShoppingList::getProduct(int position) const {
 }
 
 int ShoppingList::getUnsoldProductQuantity() const {
-    return std::count_if(products.begin(), products.end(), [](const auto& product) {
-        return !product.isSold();
-    });
+    int totalUnsoldQuantity = 0;
+    for (const auto& product : products) {
+        if (!product.isSold()) {
+            totalUnsoldQuantity += 1;
+        }
+    }
+    return totalUnsoldQuantity;
 }
 
- std::vector<Observer *> ShoppingList:: getObserver() {
+ std::vector<Observer *> ShoppingList::getObserver() {
     return observers;
-};
+
+}

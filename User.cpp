@@ -51,25 +51,35 @@ void User::addProduct(ShoppingList* list,const Product& p) {
 void User::removeProduct(ShoppingList* list, int position) {
     list->removeProduct(position);
     std::cout << "Elemento rimosso dalla lista della spesa" << std::endl;
-}
+} 
 
-void User::addNewList(ShoppingList* list) {
+void User::addList(ShoppingList* list) {
     lists.push_back(list);
     list->attach(this);
 }
 
-void User::removeList(ShoppingList& targetList) {
+void User::removeList(ShoppingList* targetList) {
     // Rimuove la lista dalla lista delle liste della spesa dell'utente
-    lists.erase(std::remove(lists.begin(), lists.end(), &targetList), lists.end());
+    for(int i = 0; i < lists.size(); i++){
+        if(lists[i] == targetList)
+            lists.erase(std::next(lists.begin(),i));
+    }
 
     // Stacca l'utente dalla lista della spesa
-    targetList.detach(this);
+    targetList->detach(this);
+
+
 }
 
-void User::getAllShoppingList() {
+void User::getAllShoppingLists() {
     std::cout << "Liste per utente " << this->getUserId() << " - Numero totale: " << this->getListsNumber() << std::endl;
     
     for (const auto& list : lists) {
         std::cout << "  - Nome lista: " << list->getListName() << ", Prodotti mancanti: " << list->getUnsoldProductQuantity() << std::endl;
     }
+}
+
+void User::purchasedProducts(ShoppingList* lista, int index) {
+    std::cout << "Elemento acquistato: " << std::endl;
+    lista->productPurchased(index);
 }

@@ -5,7 +5,9 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
 #include "ShoppingList.h"
+#include "Observer.h"
 
 class User : public Observer {
     private:
@@ -13,9 +15,9 @@ class User : public Observer {
         std::vector<ShoppingList*> lists;
     
     public:
-        User(const std:string& id);
+        User(const std::string& id);
         ~User();
-        void getUserId(){
+        std::string getUserId(){
             return id;
         }
         void showList(const ShoppingList* list) const;
@@ -27,7 +29,7 @@ class User : public Observer {
         void getAllShoppingLists();
         void purchasedProducts(ShoppingList* list, int position);
         void addProduct(ShoppingList* list, const Product& product);
-        void removeProduct(ShoppingList* list, const Product& product);
+        void removeProduct(ShoppingList* list, int position);
         void update(std::string listName) override;
 };
 
