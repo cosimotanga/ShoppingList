@@ -1,3 +1,4 @@
+//
 #include "ShoppingList.h"
 
 void ShoppingList::removeProduct(int position) {

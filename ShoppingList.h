@@ -1,3 +1,4 @@
+//
 #ifndef SHOPPINGLIST_H
 #define SHOPPINGLIST_H
 #include "Subject.h"
