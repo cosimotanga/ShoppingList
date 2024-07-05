@@ -1,61 +1,39 @@
-//
+
 #ifndef SHOPPINGLIST_H
 #define SHOPPINGLIST_H
-#include "Subject.h"
-#include "Product.h"
-#include "Observer.h"
-#include <iostream>
+
+
 #include <vector>
-#include <string>
+#include <iostream>
+#include "Observer.h"
+#include "Subject.h"
 
+// ShoppingList class definition, inheriting from Subject
 class ShoppingList : public Subject {
-    private:
-        std::vector<Observer*> observers;
-        std::vector<Product> products;
-        std::string name;
 
+    private:
+        std::vector<Product> products;
+        std::vector<Observer*> observers;
+        std::string name;
+ 
     public:
         ShoppingList(const std::string& name) : name(name) {};
-        void addProduct(const Product& product) {
-        products.push_back(product);
-        notify();
-    }
+//
+        void addProduct(const Product& product);
+        void removeProduct(int index);
+        void productPurchased(int index);
 
-void removeProduct(int position) {
-}
+        void attach(Observer* observer) override;     //
+        void detach(Observer* observer) override;     //// Override methods to manage observers
+        void notify() override;                       //
 
-void attach(Observer* observer) override {}
+        const std::vector<Product>& getProducts() const;
+        int getSize() const;
+        std::string getListName() const;
+        int getUnsoldProductQuantity() const;
+        const Product& getProduct(int index) const;
+        std::vector<Observer *> getObserver();
 
-void detach(Observer* observer) override{
-}
-
-void notify() {
-}
-
-void productPurchased(int position) {
-    
-}
-
-std::string getListName() const {}
-   
-
-int getSize() const {
-   
-}
-
-const std::vector<Product>& getProducts() const {
-    
-}
-
-const Product& getProduct(int position) const {
-    
-}
-
-int getUnsoldProductQuantity() const {
-}
-
- std::vector<Observer *> getObserver() {
-}
 };
 
 #endif

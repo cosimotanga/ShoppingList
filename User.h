@@ -1,37 +1,37 @@
-//USER
-//
-
 #ifndef USER_H
 #define USER_H
 
-#include <iostream>
 #include <string>
-#include <vector>
+#include <iostream>
 #include "ShoppingList.h"
-#include "Observer.h"
 
+// User class definition, inheriting from Observer
 class User : public Observer {
-    private:
-        std::string id;
-        std::vector<ShoppingList*> lists;
-    
-    public:
-        User(const std::string& id);
-        ~User();
-        std::string getUserId(){
-            return id;
-        }
-        void showList(const ShoppingList* list) const;
-        void addList(ShoppingList* list);
-        void removeList(ShoppingList* list);
-        int getListsNumber(){
-            return lists.size();
-        }
-        void getAllShoppingLists();
-        void purchasedProducts(ShoppingList* list, int position);
-        void addProduct(ShoppingList* list, const Product& product);
-        void removeProduct(ShoppingList* list, int position);
-        void update(std::string listName) override;
+private:
+    std::vector<ShoppingList*> lists; // Vector to hold pointers to ShoppingList objects
+    std::string id;
+
+public:
+    User(const std::string& id);
+    ~User();
+ 
+    void update(std::string listName) override; // Override the update method from Observer
+
+    void showList(const ShoppingList* list) const;
+    void productPurchased(ShoppingList* list, int index);
+    void addProducts(ShoppingList* list,const Product& product);
+    void removeProduct(ShoppingList* list, int index);
+    void createList(ShoppingList* list, const std::vector<Product>& element);
+    void addList(ShoppingList* list);
+    void removeList(ShoppingList* list);
+    int getListNumber(){return lists.size();}
+    void getAllShoppingList();
+    std::string getUserId(){return id;}
+
+
+
 };
+//
+
 
 #endif
