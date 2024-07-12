@@ -9,13 +9,12 @@ void ShoppingList::addProduct(const Product& product) {
 
 // Remove a product from the shopping list by position
 void ShoppingList::removeProduct(int position) {
-    std::cout << ""<< products.at(position).getName() << " removed from " << this->getListName() << ""<< std::endl;
+    std::cout << ""<< products.at(position).getName() << " removed " << this->getListName() << ""<< std::endl;
     if (position >= 0 && position < products.size()) {
         products.erase(products.begin() + position);
         notify(); // Notify all observers about the update
     }
 } 
-//
 // Mark a product as purchased by position
 void ShoppingList::productPurchased(int position) {
     std::cout << ""<< products.at(position).getName() << " purchased: " << std::endl;
@@ -61,7 +60,7 @@ std::string ShoppingList::getListName() const {
     return name;
 }
 
-int ShoppingList::getUnsoldProductQuantity() const {
+int ShoppingList::getUnboughtProductQuantity() const {
     int totalUnboughtQuantity = 0;
     for (const auto& product : products) {
         if (!product.isSold()) {

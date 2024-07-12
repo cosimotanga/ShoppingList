@@ -51,12 +51,12 @@ int main(int argc, char *argv[]) {
     Product product9("Cake", 1);
 
     // Add a product to the first shopping list
-    user1.addProducts(&shoppingList1, product9);
+    user1.addProduct(&shoppingList1, product9);
 
     // Add products to the second shopping list
-    user1.addProducts(&shoppingList2, product7);
-    user1.addProducts(&shoppingList2, product8);
-    user1.addProducts(&shoppingList2, product6);
+    user1.addProduct(&shoppingList2, product7);
+    user1.addProduct(&shoppingList2, product8);
+    user1.addProduct(&shoppingList2, product6);
 
     // Mark products as purchased in the first shopping list
     user1.productPurchased(&shoppingList1, 0); 
@@ -75,4 +75,7 @@ int main(int argc, char *argv[]) {
     user1.showList(&shoppingList1);
     user1.getAllShoppingList();
     user2.getAllShoppingList();
-}//wywry
+
+    user1.findList("Food");
+    user2.findList("House essentials");
+}

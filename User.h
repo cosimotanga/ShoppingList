@@ -19,19 +19,17 @@ public:
 
     void showList(const ShoppingList* list) const;
     void productPurchased(ShoppingList* list, int index);
-    void addProducts(ShoppingList* list,const Product& product);
+    void addProduct(ShoppingList* list,const Product& product);
     void removeProduct(ShoppingList* list, int index);
-    void createList(ShoppingList* list, const std::vector<Product>& element);
     void addList(ShoppingList* list);
     void removeList(ShoppingList* list);
     int getListNumber(){return lists.size();}
     void getAllShoppingList();
     std::string getUserId(){return id;}
-
-
-
+    void findList(std::string name);
+    //find list
 };
-//
+
 
 
 #endif

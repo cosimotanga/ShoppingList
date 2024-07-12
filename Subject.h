@@ -3,7 +3,7 @@
 
 
 #include "Observer.h"
-#include "Product.h"
+//#include "Product.h"
 
 // Definition of the abstract class Subject
 class Subject {
@@ -14,6 +14,4 @@ public:
     virtual ~Subject() = default;
  
 };
-
-
-#endif//
+#endif

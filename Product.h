@@ -11,25 +11,19 @@ class Product {
 
 public:
  
-    Product(const std::string& name, int quantity, bool sold = false)
+    Product(const std::string& name, unsigned int quantity, bool sold = false) //quantita neg
             : name(name), quantity(quantity), sold(sold) {}
 
     const std::string getName() const { return name; }    
     bool isSold() const { return sold; }
     void setProductStatus(bool isSold) { sold = isSold; }
-    int getQuantity() const { return quantity; }
+    unsigned int getQuantity() const { return quantity; }
 
 
 private:
     std::string name;
     bool sold;
-    int quantity;
+    unsigned int quantity;
 };
-
-
-
-
-
-//
 
 #endif

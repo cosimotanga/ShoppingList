@@ -25,7 +25,7 @@ void User::showList(const ShoppingList* list) const {
 
     int i = 0;
 
-    int remaining = list->getUnsoldProductQuantity();
+    int remaining = list->getUnboughtProductQuantity();
     std::cout << "Missing " << list->getListName() << " list goods to buy: " << remaining << std::endl;
     const std::vector<Product> products = list->getProducts();
 
@@ -46,18 +46,8 @@ void User::productPurchased(ShoppingList* list, int index) {
     list->productPurchased(index);
 }
 
-
-// Create a new shopping list and add products to it
-void User::createList(ShoppingList* list, const std::vector<Product>& products) {
-    list->attach(this);
-    lists.push_back(list);
-    for (const Product& p : products) {
-        list->addProduct(p);
-    }
-}
-
 // Add a product to an existing shopping list
-void User::addProducts(ShoppingList* list,const Product& p) {
+void User::addProduct(ShoppingList* list,const Product& p) {
     list->addProduct(p);
 }
 
@@ -81,13 +71,25 @@ void User::removeList(ShoppingList* list) {
         list->detach(this);
     }
 
+// search list in the list of lists of the user by name
+void User::findList(std::string name) {
+    bool exist = false;
+        for(int i = 0; i < lists.size(); i++){
+        if(lists[i]->getListName() == name) {
+            std::cout << "" << name << " list found for user - " << this->id << "\n";
+            exist = true;
+        }
+    }
+
+    if(exist == false) std::cout << "" << name << " list not found for user - " << this->id <<"\n";
+}
 
 // Display all shopping lists shared by the user
 void User ::getAllShoppingList() {
  
     std::cout<<"Lists shared by "<<this->getUserId()<<" - "<<this->getListNumber()<<std::endl;
     for (const auto& list : lists) {
-        std::cout << " - " << list->getListName() << ": " << list->getUnsoldProductQuantity() << " goods left to buy\n";
+        std::cout << " - " << list->getListName() << ": " << list->getUnboughtProductQuantity() << " goods left to buy\n";
         }
 
-}//
+}

@@ -5,8 +5,8 @@
 
 #include <vector>
 #include <iostream>
-#include "Observer.h"
 #include "Subject.h"
+#include "Product.h"
 
 // ShoppingList class definition, inheriting from Subject
 class ShoppingList : public Subject {
@@ -18,7 +18,6 @@ class ShoppingList : public Subject {
  
     public:
         ShoppingList(const std::string& name) : name(name) {};
-//
         void addProduct(const Product& product);
         void removeProduct(int index);
         void productPurchased(int index);
@@ -27,10 +26,10 @@ class ShoppingList : public Subject {
         void detach(Observer* observer) override;     //// Override methods to manage observers
         void notify() override;                       //
 
-        const std::vector<Product>& getProducts() const;
+        const std::vector<Product>& getProducts() const; //
         int getSize() const;
         std::string getListName() const;
-        int getUnsoldProductQuantity() const;
+        int getUnboughtProductQuantity() const;
         const Product& getProduct(int index) const;
         std::vector<Observer *> getObserver();
 

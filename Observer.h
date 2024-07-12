@@ -2,7 +2,7 @@
 #define OBSERVER_H
 
 
-#include "ShoppingList.h"
+//#include "ShoppingList.h"
 
 // Definition of the abstract class Observer
 class Observer {
@@ -10,7 +10,5 @@ class Observer {
         virtual void update(std::string name) = 0;
         virtual ~Observer() = default;
 };
-
- //
 
 #endif
