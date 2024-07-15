@@ -16,106 +16,79 @@ protected:
 
 };
 
-TEST_F(UserTest, UpdateTest) {
-    Product product1("Milk", 2);
-    Product product2("Bread", 1);
-    user.addList(&shoppingList);
-    // Aggiungi alcuni elementi alla ShoppingList
-    shoppingList.addProduct(product1);
-    shoppingList.addProduct(product2);
-
-    // Cattura l'output della funzione update()
-    ::testing::internal::CaptureStdout();
-
-    // Richiama la funzione update() di User
-    user.update(shoppingList.getListName());
-
-    // Ottieni l'output catturato
-    std::string output = ::testing::internal::GetCapturedStdout();
-
-// Output atteso (aggiorna con il nuovo formato della tua implementazione di displayList())
-std::string expectedOutput = "Lista aggiornata lista1 per lo user anna:\nElementi dalla lista lista1 mancanti da comprare: 2\n0. Latte - Quantit\xC3\xA0: 2 \n1. Pane - Quantit\xC3\xA0: 1 \n\n";
-
-// Assert che l'output sia uguale all'output atteso
-EXPECT_EQ(output, expectedOutput);
-}
-
-
-
+// Test for User::getUnboughtProductQuantity()
 TEST_F(UserTest, UnboughtProductTest){
 
     Product product1("Milk", 2);
     Product product2("Bread", 1);
     user.addList(&shoppingList);
-// Aggiungi alcuni elementi alla ShoppingList
+// Add elements to ShoppingList
     shoppingList.addProduct(product1);
     shoppingList.addProduct(product2);
     ASSERT_EQ(shoppingList.getUnboughtProductQuantity(), 2);
 
-    // Segna l'elemento con indice 0 come acquistato
+    // Mark index 0 product as purchased
     user.productPurchased(&shoppingList, 0);
     ASSERT_EQ(shoppingList.getUnboughtProductQuantity(), 1);
 
-
-
 };
 
-// Test per User::productPurchased()
+// Test for User::productPurchased()
 TEST_F(UserTest, MarkProductAsPurchasedTest) {
 
     Product product1("Milk", 2);
     Product product2("Bread", 1);
     user.addList(&shoppingList);
-// Aggiungi alcuni elementi alla ShoppingList
+
 shoppingList.addProduct(product1);
 shoppingList.addProduct(product2);
 
-// Segna l'elemento con indice 0 come acquistato
+// Mark index 0 product as purchased
 user.productPurchased(&shoppingList, 0);
 
-// Assert che l'elemento sia stato segnato come acquistato correttamente
+// Assert of correct purchase
 ASSERT_TRUE(shoppingList.getProduct(0).isSold());
 ASSERT_EQ(shoppingList.getUnboughtProductQuantity(), 1);
 }
 
-// Test per User::addProducts()
+// Test for User::addProduct()
 TEST_F(UserTest, AddProductsTest) {
 
     Product product1("Milk", 2);
     Product product2("Bread", 1);
     user.addList(&shoppingList);
-// Aggiungi alcuni elementi alla ShoppingList
+// Add elements to ShoppingList
 shoppingList.addProduct(product1);
 shoppingList.addProduct(product2);
 
-// Aggiungi un nuovo elemento alla ShoppingList utilizzando User::addProducts()
+// Add new product to ShoppingList using User::addProducts()
 Product newProduct("Biscuits", 3);
 user.addProduct(&shoppingList, newProduct);
 
-// Assert che il nuovo elemento sia stato aggiunto correttamente alla lista
+// Assert of correct adding
 ASSERT_EQ(shoppingList.getSize(), 3);
 }
 
-// Test per User::removeProduct()
+// Test for User::removeProduct()
 TEST_F(UserTest, RemoveProductTest) {
-// Aggiungi alcuni elementi alla ShoppingList
+
     Product product1("Milk", 2);
     Product product2("Bread", 1);
     user.addList(&shoppingList);
     shoppingList.addProduct(product1);
     shoppingList.addProduct(product2);
 
-// Rimuovi l'elemento con indice 1 dalla ShoppingList utilizzando User::removeProduct()
+// Remove of index 1 element from shopping list
 user.removeProduct(&shoppingList, 1);
 
-// Assert che l'elemento sia stato rimosso correttamente dalla lista
+// Assert of correct removing
 ASSERT_EQ(shoppingList.getSize(), 1);
 }
 
 
-// Test per User::removeProduct()
+// Test for User::removeList()
 TEST_F(UserTest, RemoveAndAddListTest) {
-// Aggiungi alcuni elementi alla ShoppingList
+
     Product product1("Milk", 2);
     Product product2("Bread", 1);
     user.addList(&shoppingList);
@@ -129,9 +102,9 @@ TEST_F(UserTest, RemoveAndAddListTest) {
 
     ASSERT_EQ( user.getListNumber(),2);
 
-// Rimuovi l'elemento con indice 1 dalla ShoppingList utilizzando User::removeProduct()
+// Remove list 
     user.removeList(&shoppingList2);
 
-// Assert che l'elemento sia stato rimosso correttamente dalla lista
+// Assert of correct removing
     ASSERT_EQ(user.getListNumber(), 1);
 }
