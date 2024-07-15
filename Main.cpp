@@ -6,12 +6,13 @@
 #include <vector>
 #include <memory>
 
-int main(int argc, char *argv[]) {
+int main(int argc, char *argv[])
+{
 
     // Create two shopping lists
     ShoppingList shoppingList1(std::string("Food"));
     ShoppingList shoppingList2(std::string("House essentials"));
- 
+
     // Define user names
     std::string userName = "Anna";
     std::string userName2 = "Bob";
@@ -59,8 +60,8 @@ int main(int argc, char *argv[]) {
     user1.addProduct(&shoppingList2, product6);
 
     // Mark products as purchased in the first shopping list
-    user1.productPurchased(&shoppingList1, 0); 
-    user1.productPurchased(&shoppingList1, 2); 
+    user1.productPurchased(&shoppingList1, 0);
+    user1.productPurchased(&shoppingList1, 2);
 
     // Remove a product from the first shopping list
     user1.removeProduct(&shoppingList1, 4);

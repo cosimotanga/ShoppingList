@@ -1,13 +1,16 @@
 #include <gtest/gtest.h>
 #include "../Product.h"
 
-class ProductTest : public ::testing::Test {
+class ProductTest : public ::testing::Test
+{
 protected:
-    void SetUp() override {
+    void SetUp() override
+    {
     }
 };
 // Test for Product
-TEST_F(ProductTest, ProductMethods) {
+TEST_F(ProductTest, ProductMethods)
+{
     Product product("Pizza", 1, false);
 
     ASSERT_EQ(product.getName(), "Pizza");
