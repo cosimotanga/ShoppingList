@@ -19,7 +19,6 @@ public:
     void setProductStatus(bool isSold) { sold = isSold; }
     unsigned int getQuantity() const { return quantity; }
 
-
 private:
     std::string name;
     bool sold;
