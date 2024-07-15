@@ -3,26 +3,32 @@
 #define PRODUCT_H
 
 #include <string>
+#include <stdexcept>
 
 // Definition of the Product class
 class Product
 {
 
 public:
-    Product(const std::string &name, unsigned int quantity, bool sold = false) // quantita neg
-        : name(name), quantity(quantity), sold(sold)
+    Product(const std::string &name, int q, bool sold = false)
+        : name(name), quantity(q), sold(sold)
     {
+        if (q < 1)
+        { // throw an exception on invalid quantity
+            std::cout << "invalid product quantity value\n";
+            throw std::invalid_argument("received value 0 or below");
+        }
     }
 
-    const std::string getName() const { return name; }
+    std::string getName() const { return name; }
     bool isSold() const { return sold; }
     void setProductStatus(bool isSold) { sold = isSold; }
-    unsigned int getQuantity() const { return quantity; }
+    int getQuantity() const { return quantity; }
 
 private:
     std::string name;
     bool sold;
-    unsigned int quantity;
+    int quantity;
 };
 
 #endif

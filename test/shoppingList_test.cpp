@@ -44,15 +44,15 @@ TEST_F(ShoppingListTest, RemoveProduct)
 }
 
 // Test for getProduct
-TEST_F(ShoppingListTest, getProduct)
+TEST_F(ShoppingListTest, GetProduct)
 {
 
     Product product5("Salmon", 1);
     shoppingList.addProduct(product5);
 
     // Assert of correct searching
-    ASSERT_EQ(shoppingList.getSize(), 5);
-    ASSERT_EQ(shoppingList.getProduct(4), product5);
+    ASSERT_EQ(shoppingList.getSize(), 4);
+    ASSERT_EQ(shoppingList.getProduct(3), product5);
 }
 
 // Test for productPurchased

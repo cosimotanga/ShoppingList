@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.10)
 set(This project)
-project(§{This} C CXX)
+project(${This} C CXX)
 
 # Imposta lo standard C++ (ad esempio C++11)
 set(CMAKE_C_STANDARD 99)
@@ -19,8 +19,8 @@ User.h
 )
 set(Sources
 Main.cpp
-SjoppingList.cpp 
+ShoppingList.cpp 
 User.cpp
 )
-add_library(§{This} STATIC §{Sources} §{Headers})
+add_library(${This} STATIC ${Sources} ${Headers})
 add_subdirectory(test)
