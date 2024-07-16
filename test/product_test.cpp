@@ -21,3 +21,16 @@ TEST_F(ProductTest, ProductMethods)
     product.setProductStatus(true);
     ASSERT_TRUE(product.isSold());
 }
+
+// Test to check if exception is thrown or not for quantity value
+TEST_F(ProductTest, CheckQuantity)
+{
+
+    // Invalid product
+    ASSERT_THROW(Product("InvalidProduct", 0), std::invalid_argument);
+    ASSERT_THROW(Product("InvalidProduct", -1), std::invalid_argument);
+
+    // Valid product
+    ASSERT_NO_THROW(Product("ValidProduct", 1));
+    ASSERT_NO_THROW(Product("ValidProduct", 10));
+}
