@@ -1,23 +1,22 @@
 cmake_minimum_required(VERSION 3.10)
-set(This test)
+project(my_test)
+
 set(Sources
-product_test.cpp
-run_tests.cpp
-shoppingList_test.cpp 
-user_test.cpp
+    product_test.cpp
+    shoppingList_test.cpp 
+    user_test.cpp
 )
 
-add_executable(
-    ${This} ${Sources}
-)
+add_executable(my_test ${Sources})
 
-target_link_libraries(
-    ${This} PUBLIC 
-    gtest_main
-    my_test
-)
+# Link with the main library and Google Test
+target_link_libraries(my_test PRIVATE gtest_main project)
 
 add_test(
-    NAME ${This}
-    COMMAND ${This}
+    NAME my_test
+    COMMAND my_test
 )
+
+# Set runtime library for Debug and Release
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} /MDd")
+set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /MD")

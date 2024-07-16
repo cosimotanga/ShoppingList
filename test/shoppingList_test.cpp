@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
-#include "User.h"
-#include "ShoppingList.cpp"
+#include "../ShoppingList.h"
+#include "../User.h"
 
 class ShoppingListTest : public ::testing::Test
 {
@@ -47,12 +47,12 @@ TEST_F(ShoppingListTest, RemoveProduct)
 TEST_F(ShoppingListTest, GetProduct)
 {
 
-    Product product5("Salmon", 1);
+    const Product product5("Salmon", 1);
     shoppingList.addProduct(product5);
 
     // Assert of correct searching
     ASSERT_EQ(shoppingList.getSize(), 4);
-    ASSERT_EQ(shoppingList.getProduct(3), product5);
+    ASSERT_TRUE(shoppingList.getProduct(3) == product5);
 }
 
 // Test for productPurchased

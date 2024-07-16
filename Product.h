@@ -20,10 +20,15 @@ public:
         }
     }
 
+    bool operator==(const Product &other) const {
+        return name == other.name && quantity == other.quantity && sold == other.sold;
+    }
+
     std::string getName() const { return name; }
     bool isSold() const { return sold; }
     void setProductStatus(bool isSold) { sold = isSold; }
     int getQuantity() const { return quantity; }
+
 
 private:
     std::string name;

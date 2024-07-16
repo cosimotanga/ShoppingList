@@ -17,7 +17,7 @@ TEST_F(ProductTest, ProductMethods)
     ASSERT_EQ(product.getQuantity(), 1);
     ASSERT_FALSE(product.isSold());
 
-    // Mark as purchased e verify
+    // Mark as purchased and verify
     product.setProductStatus(true);
     ASSERT_TRUE(product.isSold());
 }
